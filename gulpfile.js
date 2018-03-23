@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     minify = require('gulp-clean-css');
 
-// Setup Options
+// Setup Paths
 var sassPath = './public/css/sass/*.scss',
     cssDest = './public/css/min';
 
@@ -24,16 +24,6 @@ gulp.task('sass', function() {
     }))
     .pipe(gulp.dest(cssDest))
 });
-
-// Minify CSS
-// gulp.task('minify', function() {
-//   return gulp.src(cssPath)
-//     .pipe(minify())
-//     .pipe(rename({
-//       extname: '.min.css'
-//     }))
-//     .pipe(gulp.dest(minDest));
-// });
 
 // Watch for CSS/SCSS changes
 gulp.task('watch', function () {
