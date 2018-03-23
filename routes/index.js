@@ -10,7 +10,7 @@ var fs = require('fs'),
 router.get('/', function(req, res) {
 	res.render('index', {
 		style: 'home.min.css',
-		metaTitle: 'Home | Ties.com - Wishlist App',
+		metaTitle: 'Ties.com | Wishlist App',
 		metaDescription: 'This is the Home page',
 		products: products
 	})
@@ -46,7 +46,7 @@ router.get('/add-to-wishlist', function(req, res) {
 
 	res.status(200).json({
 		"success" : true,
-		"errors" : "Error message: You done messed up"
+		"errors" : "Error message: Uh oh!"
 	});
 });
 

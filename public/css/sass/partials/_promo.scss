@@ -1,3 +1,35 @@
 .promo-bar {
+  background: $dark-grey;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  transition: background 0.1s ease-in-out;
+  -moz-transition: background 0.1s ease-in-out;
+  -webkit-transition: background 0.1s ease-in-out;
 
+  &:hover {
+    background: $blue;
+    cursor: pointer;
+  }
+
+  .large {
+    font-family: nexa-slab-bold, serif;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .small {
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding-top: 5px;
+
+    .learn-more {
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 0;
+      margin-left: 8px;
+      text-decoration: underline;
+    }
+  }
 }
