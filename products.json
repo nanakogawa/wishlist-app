@@ -1,0 +1,37 @@
+{
+  "products": [
+    {
+      "color": "Zinfandel",
+      "id": "1",
+      "image": "zinfandel-skinny-tie.jpg",
+      "label": "Peter Hayer™",
+      "name": "Zinfandel Skinny Tie",
+      "price": "20.00",
+      "rating": "5"
+    },
+    {
+      "color": "Purple",
+      "id": "2",
+      "image": "purple-robe-butterfly-bow-tie.jpg",
+      "name": "Robe Butterfly Bow Tie",
+      "price": "25.00",
+      "rating": "0"
+    },
+    {
+      "color": "Light Blue",
+      "id": "3",
+      "image": "light-blue-ben-tie.jpg",
+      "name": "Ben Tie",
+      "price": "20.00",
+      "rating": "0"
+    },
+    {
+      "color": "Zinfandel",
+      "id": "4",
+      "image": "coral-cotton-tioga-pocket-square.jpg",
+      "name": "Tioga Pocket Square",
+      "price": "12.00",
+      "rating": "5"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 	})
 });
 
-router.get('/product', function(req, res) {
+router.get('/product/id', function(req, res) {
 	res.render('product', {
 		style: 'product.min.css',
 		metaTitle: 'Product | Ties.com - Wishlist App',
