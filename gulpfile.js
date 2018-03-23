@@ -27,11 +27,10 @@ gulp.task('sass', function() {
 
 // Watch for CSS/SCSS changes
 gulp.task('watch', function () {
-  gulp.watch('./public/css/sass/*.scss', ['sass']);
   gulp.watch('./public/css/sass/partials/*.scss', ['sass']);
+  gulp.watch('./public/css/sass/*.scss', ['sass']);
   gulp.watch('./public/css/*.css', ['minify']);
 });
-
 
 gulp.task('serve', ['watch'], function(){
   return nodemon({

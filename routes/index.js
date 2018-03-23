@@ -1,11 +1,18 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router();
 
+// Get products data
+var fs = require('fs'),
+		rawdata = fs.readFileSync('products.json'),
+    products = JSON.parse(rawdata);
+
+// Set routes
 router.get('/', function(req, res) {
 	res.render('index', {
 		style: 'home.min.css',
 		metaTitle: 'Home | Ties.com - Wishlist App',
-		metaDescription: 'This is the Home page'
+		metaDescription: 'This is the Home page',
+		products: products
 	})
 });
 
@@ -30,6 +37,16 @@ router.get('/shopping-cart', function(req, res) {
 		style: 'shopping-cart.min.css',
 		metaTitle: 'Shopping Cart | Ties.com - Wishlist App',
 		metaDescription: 'This is the Shopping Cart page'
+	});
+});
+
+router.get('/add-to-wishlist', function(req, res) {
+
+	// Do something
+
+	res.status(200).json({
+		"success" : true,
+		"errors" : "Error message: You done messed up"
 	});
 });
 
