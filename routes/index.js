@@ -1,10 +1,44 @@
 var express = require('express'),
-    router = express.Router();
+	router = express.Router();
 
 // Get products data
 var fs = require('fs'),
-		rawdata = fs.readFileSync('products.json'),
-    products = JSON.parse(rawdata);
+	rawdata = fs.readFileSync('products.json'),
+	products = JSON.parse(rawdata);
+
+var findProduct = function(urlParam, callback) {
+	var success = false,
+			product;
+
+	for (var i = 0; i < products.length; i++) {
+			if(products[i].urlParam === urlParam) {
+			  success = true;
+				product = products[i];
+				return callback(null, product);
+			}
+	}
+
+	if(!success) {
+		return callback(new Error('Product not found'));
+	}
+};
+
+var findProductMiddleware = function(req, res, next) {
+	if(req.params.urlParam) {
+			console.log('Product name param was detected: ' + req.params.urlParam);
+			findProduct(req.params.urlParam, function(error, product) {
+				if(error) {
+				  res.statusCode = 500;
+					return next(error);
+				}
+				res.statusCode = 200;
+				req.product = product;
+				return next();
+			})
+	} else {
+		return next();
+	}
+};
 
 // Set routes
 router.get('/', function(req, res) {
@@ -16,11 +50,12 @@ router.get('/', function(req, res) {
 	})
 });
 
-router.get('/product/id', function(req, res) {
+router.get('/product/:urlParam',findProductMiddleware, function(req, res) {
 	res.render('product', {
 		style: 'product.min.css',
 		metaTitle: 'Product | Ties.com - Wishlist App',
-		metaDescription: 'This is the Product page'
+		metaDescription: 'This is the Product page',
+		product: req.product
 	});
 });
 

@@ -7,7 +7,9 @@
     "name": "Zinfandel Skinny Tie",
     "price": "20.00",
     "rating": "5",
-    "url": "/products/zinfandel-skinny-tie"
+    "url": "/product/zinfandel-skinny-tie",
+    "urlParam": "zinfandel-skinny-tie"
+
   },
   {
     "color": "Purple",
@@ -16,7 +18,8 @@
     "name": "Robe Butterfly Bow Tie",
     "price": "25.00",
     "rating": "0",
-    "url": "/products/purple-robe-butterfly-bow-tie"
+    "url": "/product/purple-robe-butterfly-bow-tie",
+    "urlParam": "purple-robe-butterfly-bow-tie"
   },
   {
     "color": "Light Blue",
@@ -25,7 +28,8 @@
     "name": "Ben Tie",
     "price": "20.00",
     "rating": "0",
-    "url": "/products/light-blue-ben-tie"
+    "url": "/product/light-blue-ben-tie",
+    "urlParam": "light-blue-ben-tie"
   },
   {
     "color": "Coral",
@@ -34,6 +38,7 @@
     "name": "Tioga Pocket Square",
     "price": "12.00",
     "rating": "5",
-    "url": "/products/coral-tioga-pocket-square"
+    "url": "/product/coral-tioga-pocket-square",
+    "urlParam": "coral-tioga-pocket-square"
   }
 ]
