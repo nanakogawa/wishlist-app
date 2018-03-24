@@ -1,0 +1,25 @@
+.product-list {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .product {
+    padding: 0 9px 40px;
+    width: 16.666%;
+
+    a {
+      color: $dark-grey;
+      text-decoration: none;
+
+      .product-img {
+        width: 100%;
+      }
+
+      .product-info {
+        min-height: 80px;
+        padding: 15px 0 0;
+        text-align: center;
+      }
+    }
+  }
+}

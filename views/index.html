@@ -2,9 +2,19 @@
 
 <div id="page-home" class="page-wrap">
     <div class="container">
-       {{#products}}
-         {{name}}
-       {{/products}}
+        <div class="product-list">
+            {{# products}}
+                <div class="product">
+                    <a href="{{ url }}">
+                        <img class="product-img" src="/images/products/{{ image }}" alt="{{ name }}" title="{{ name }}">
+                        <div class="product-info">
+                            <div>{{ name }}</div>
+                            <div>${{ price }}</div>
+                        </div>
+                    </a>
+                </div>
+           {{/ products}}
+        </div>
     </div>
 </div>
 
