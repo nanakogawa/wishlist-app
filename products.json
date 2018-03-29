@@ -6,7 +6,6 @@
     "label": "Peter Hayer™",
     "name": "Zinfandel Skinny Tie",
     "price": "20.00",
-    "rating": "5",
     "url": "/product/zinfandel-skinny-tie",
     "urlParam": "zinfandel-skinny-tie"
 
@@ -17,7 +16,6 @@
     "image": "purple-robe-butterfly-bow-tie.jpg",
     "name": "Robe Butterfly Bow Tie",
     "price": "25.00",
-    "rating": "0",
     "url": "/product/purple-robe-butterfly-bow-tie",
     "urlParam": "purple-robe-butterfly-bow-tie"
   },
@@ -27,7 +25,6 @@
     "image": "light-blue-ben-tie.jpg",
     "name": "Ben Tie",
     "price": "20.00",
-    "rating": "0",
     "url": "/product/light-blue-ben-tie",
     "urlParam": "light-blue-ben-tie"
   },
@@ -37,7 +34,6 @@
     "image": "coral-tioga-pocket-square.jpg",
     "name": "Tioga Pocket Square",
     "price": "12.00",
-    "rating": "5",
     "url": "/product/coral-tioga-pocket-square",
     "urlParam": "coral-tioga-pocket-square"
   }
