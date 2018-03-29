@@ -6,39 +6,70 @@ var fs = require('fs'),
 	rawdata = fs.readFileSync('products.json'),
 	products = JSON.parse(rawdata);
 
-var findProduct = function(urlParam, callback) {
-	var success = false,
-			product;
+// Middleware
 
+var getAll = function(callback) {
+	if(!products) {
+	  return callback(new Error('Error'));
+	}
+	return callback(null, products);
+};
+
+var getAllMiddleware = function(req, res, next) {
+	getAll(function(error, products) {
+		if(error) {
+			res.statusCode = 500;
+			return next(error);
+		}
+		res.statusCode = 200;
+		res.body = products;
+		return next();
+	})
+};
+
+var findProduct = function(param, callback) {
+	var key = Object.keys(param)[0];
+	var product;
 	for (var i = 0; i < products.length; i++) {
-			if(products[i].urlParam === urlParam) {
-			  success = true;
-				product = products[i];
-				return callback(null, product);
-			}
+		if(products[i][key] === param[key]) {
+			product = products[i];
+			return callback(null, product);
+		}
 	}
-
-	if(!success) {
-		return callback(new Error('Product not found'));
-	}
+	return callback(new Error('Product not found'));
 };
 
 var findProductMiddleware = function(req, res, next) {
-	if(req.params.urlParam) {
-			console.log('Product name param was detected: ' + req.params.urlParam);
-			findProduct(req.params.urlParam, function(error, product) {
-				if(error) {
-				  res.statusCode = 500;
-					return next(error);
-				}
-				res.statusCode = 200;
-				req.product = product;
-				return next();
-			})
+	if(req.params) {
+		findProduct(req.params, function(error, product) {
+			if(error) {
+				res.statusCode = 400;
+				return next('Status Code: ' + res.statusCode + ' ' + error);
+			}
+			res.statusCode = 200;
+			res.body = product;
+			return next();
+		})
 	} else {
 		return next();
 	}
 };
+
+// APIs
+router.get('/product/getAll', getAllMiddleware, function(req, res) {
+	res.status(200).send(res.body);
+});
+
+router.get('/product/single/:id', findProductMiddleware, function(req, res) {
+	res.status(200).send(res.body);
+});
+
+router.post('/add-to-wishlist', function(req, res) {
+	// Got cookie! "req.body"
+	// Do something with cookie
+	console.log(req.body);
+	res.status(200).send('Success!');
+});
 
 // Set routes
 router.get('/', function(req, res) {
@@ -55,7 +86,7 @@ router.get('/product/:urlParam',findProductMiddleware, function(req, res) {
 		style: 'product.min.css',
 		metaTitle: 'Product | Ties.com - Wishlist App',
 		metaDescription: 'This is the Product page',
-		product: req.product
+		product: res.body
 	});
 });
 
@@ -72,16 +103,6 @@ router.get('/shopping-cart', function(req, res) {
 		style: 'shopping-cart.min.css',
 		metaTitle: 'Shopping Cart | Ties.com - Wishlist App',
 		metaDescription: 'This is the Shopping Cart page'
-	});
-});
-
-router.get('/add-to-wishlist', function(req, res) {
-
-	// Do something
-
-	res.status(200).json({
-		"success" : true,
-		"errors" : "Error message: Uh oh!"
 	});
 });
 
