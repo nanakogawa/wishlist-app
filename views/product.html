@@ -2,10 +2,43 @@
 
 <div id="page-product" class="page-wrap">
     <div class="container">
-        {{ product }}
-        <a id="add-to-wishlist">
-            <button>Add to Wishlist</button>
-        </a>
+        <div class="single-product">
+            <div class="product-image">
+                <img class="" src="/images/products/{{ product.image }}">
+            </div>
+            <div class="product-info">
+                <h1 class="title">
+                    {{ product.name }}
+                </h1>
+                <div class="by-label">
+                    {{ product.label }} by Ties.com
+                </div>
+                <div class="price">
+                    <!-- Don't have correct font -->
+                    ${{ product.price }}
+                </div>
+                <div class="rating">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div class="action-container">
+                    <div class="shipping">
+                        FREE SHIPPING IN THE USA*
+                    </div>
+                    <button id="add-to-cart">Add to Cart</button>
+                    <form id="wishlist-form">
+                        <input type="number" name="id" value="{{ product.id }}" hidden="true">
+                        <button type="submit" id="add-to-wishlist" data-id="{{ product.id }}">
+                            <span class="fa fa-heart"></span>
+                            <span class="text">Add to Wishlist</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
