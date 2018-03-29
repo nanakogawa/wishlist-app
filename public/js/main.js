@@ -2,14 +2,14 @@ $(document).ready(function() {
 	'use strict';
 
 	var storedCookies;
-	var userIsSignedIn = true;
+	var userIsSignedIn = true; // Award winning user auth
 	var wishlistBtn = $('#add-to-wishlist');
 	var wishlistBtnText = $('#add-to-wishlist .text');
 	var wishlistNav = $('.nav-wishlist');
 	var wishlistCount = $('.wishlist-count');
 
 	(function() {
-		updateWishlistCount();
+			updateWishlistCount();
 	})();
 
 	$('#page-product').ready(function() {
@@ -36,10 +36,14 @@ $(document).ready(function() {
 	}
 
 	function updateWishlistCount(id) {
-		if(!document.cookie || !storedCookies || storedCookies.length === 0) {
+		if(!document.cookie) {
 			wishlistNav.css('display', 'none')
 		} else {
-			wishlistCount.text(getCookie(id).length);
+			if(getCookie(id).length !== 0) {
+				wishlistCount.text(getCookie(id).length);
+			} else {
+				wishlistNav.css('display', 'none')
+			}
 		}
 	}
 
@@ -56,7 +60,7 @@ $(document).ready(function() {
 
 	function checkDuplicate(id) {
 		if(document.cookie) {
-			getCookie();
+			getCookie(id);
 			for(var i = 0; i < storedCookies.length; i++) {
 				if(storedCookies[i].id === id) {
 					return true;
@@ -86,6 +90,7 @@ $(document).ready(function() {
 		for(var i = 0; i < storedCookies.length; i++) {
 			if(storedCookies[i].id === id) {
 				storedCookies.splice(i, 1);
+				break;
 			}
 		}
 	}
@@ -101,57 +106,62 @@ $(document).ready(function() {
 		if(!document.cookie) {
 			var newCookie = [];
 			newCookie.push({id: id});
-			setDocCookie(JSON.stringify(newCookie))
+			var firstCookie = JSON.stringify(newCookie);
+			setDocCookie(firstCookie)
 		} else {
 			duplicate = checkDuplicate(id);
 			if(duplicate) {
 				removeDuplicate(id);
-				setDocCookie(JSON.stringify(storedCookies));
+				var removeCookie = JSON.stringify(storedCookies);
+				setDocCookie(removeCookie);
 				removeCookieUpdate(id);
+				return removeCookie;
 			} else {
 				storedCookies.push({id: id});
-				setDocCookie(JSON.stringify(storedCookies));
+				var addCookie = JSON.stringify(storedCookies);
+				setDocCookie(addCookie);
 				addCookieUpdate(id);
 			}
 		}
 	}
 
-	function checkCookie(id) {
+	function getUpdatedCookie(id) {
 		var duplicate = false;
 
 		if(!document.cookie) {
 			var newCookie = [];
 			newCookie.push({id: id});
+			var firstCookie = JSON.stringify(newCookie);
 			wishlistBtnText.text('Added to Wishlist');
 			wishlistCount.text('1');
 			wishlistNav.css('display', 'inline');
-			return JSON.stringify(newCookie);
+			return firstCookie;
 		} else {
 			duplicate = checkDuplicate(id);
 			if(duplicate) {
 				removeDuplicate(id);
+				var removeCookie = JSON.stringify(storedCookies);
 				removeCookieUpdate(id);
-				return JSON.stringify(storedCookies);
+				return removeCookie;
 
 			} else {
 				storedCookies.push({id: id});
+				var addCookie = JSON.stringify(storedCookies);
 				addCookieUpdate(id);
-				return JSON.stringify(storedCookies);
+				return addCookie;
 			}
 		}
 	}
 
 	$('#wishlist-form').submit(function(event) {
 		event.preventDefault();
-
 		var inputs = $('#wishlist-form input');
 		var values = {};
     inputs.each(function() {
         values[this.name] = $(this).val();
     });
-
     var id = values.id;
-		var stringCookie = checkCookie(id);
+		var stringCookie = getUpdatedCookie(id);
 		var cookie = "id=" + stringCookie + "; path=/";
 
 		if(!userIsSignedIn) {
