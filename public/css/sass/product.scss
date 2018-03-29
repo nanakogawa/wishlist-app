@@ -1,5 +1,107 @@
 @import "partials/base";
 
 #page-product {
+  padding: 0;
 
+  .single-product {
+    display: flex;
+    flex-direction: row;
+    margin: 45px auto 0;
+    max-width: 1200px;
+    padding: 0 7%;
+
+    .product-image {
+      text-align: center;
+      padding: 0 5% 0 0;
+      width: 50%;
+
+      img {
+        max-width: 468px;
+        width: 100%;
+      }
+    }
+
+    .product-info {
+      text-align: center;
+      padding: 0 0 0 5%;
+      width: 50%;
+
+      h1.title {
+        font-family: nexa-slab-bold, serif;
+        font-size: 28px;
+        font-weight: normal;
+        margin: 0;
+
+      }
+
+      .by-label {
+        padding: 6px 0 10px;
+      }
+
+      .price {
+        color: $label-dark-grey;
+        font-family: nexa-slab-bold, serif;
+        font-size: 21px;
+        font-weight: 600;
+        padding: 8px 0 0;
+      }
+
+      .shipping {
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .rating {
+        color: $blue;
+        padding: 10px 0 0;
+      }
+
+      .action-container {
+        margin: 15px auto;
+        max-width: 376px;
+
+        #add-to-cart {
+          background: $blue;
+          border: none;
+          border-radius: 6px;
+          color: #fff;
+          font-size: 21px;
+          letter-spacing: 1px;
+          margin: 15px 0 0;
+          padding: 15px 0;
+          -webkit-font-smoothing: antialiased;
+          -webkit-transition: background 0.1s ease-in-out;
+          -moz-transition: background 0.1s ease-in-out;
+          transition: background 0.1s ease-in-out;
+          width: 100%;
+
+          &:hover {
+            background: $hover-blue;
+            cursor: pointer;
+            outline: none;
+            -webkit-transition: background 0.1s ease-in-out;
+            -moz-transition: background 0.1s ease-in-out;
+            transition: background 0.1s ease-in-out;
+          }
+        }
+
+        #add-to-wishlist {
+          background: none;
+          border: none;
+          box-shadow: none;
+          cursor: pointer;
+          font-family: nexa-regular, serif;
+          font-size: 13px;
+          margin: 25px 0 0;
+          -moz-box-shadow: none;
+          -webkit-box-shadow: none;
+
+          &:hover {
+            cursor: pointer;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
 }
