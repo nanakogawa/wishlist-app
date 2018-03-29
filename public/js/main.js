@@ -7,6 +7,7 @@ $(document).ready(function() {
 	var wishlistBtnText = $('#add-to-wishlist .text');
 	var wishlistNav = $('.nav-wishlist');
 	var wishlistCount = $('.wishlist-count');
+	var wishllistMsg = $('.add-to-wishlist-message');
 
 	(function() {
 			updateWishlistCount();
@@ -107,7 +108,8 @@ $(document).ready(function() {
 			var newCookie = [];
 			newCookie.push({id: id});
 			var firstCookie = JSON.stringify(newCookie);
-			setDocCookie(firstCookie)
+			setDocCookie(firstCookie);
+			wishllistMsg.slideDown(300, 'swing');
 		} else {
 			duplicate = checkDuplicate(id);
 			if(duplicate) {
@@ -115,12 +117,13 @@ $(document).ready(function() {
 				var removeCookie = JSON.stringify(storedCookies);
 				setDocCookie(removeCookie);
 				removeCookieUpdate(id);
-				return removeCookie;
+				wishllistMsg.slideUp(300, 'swing');
 			} else {
 				storedCookies.push({id: id});
 				var addCookie = JSON.stringify(storedCookies);
 				setDocCookie(addCookie);
 				addCookieUpdate(id);
+				wishllistMsg.slideDown(300, 'swing');
 			}
 		}
 	}

@@ -2,6 +2,26 @@
 
 <div id="page-product" class="page-wrap">
     <div class="container">
+        <div class="breadcrumb">
+            <i class="fa fa-caret-left"></i> {{ product.category }} / {{ product.name }}
+        </div>
+    </div>
+    <div class="add-to-wishlist-message">
+        <div class="message">
+            This item ( 1 ) has been added to your wishlist
+        </div>
+        <div class="btn-container">
+            <a class="browse" href="/">
+                <i class="fa fa-chevron-left"></i>
+                Keep Browsing
+            </a>
+            <a class="wishlist" href="/wishlist">
+                View Wishlist
+                <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="container">
         <div class="single-product">
             <div class="product-image">
                 <img class="" src="/images/products/{{ product.image }}">
@@ -18,11 +38,11 @@
                     ${{ product.price }}
                 </div>
                 <div class="rating">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
                 </div>
                 <div class="action-container">
                     <div class="shipping">
@@ -32,7 +52,7 @@
                     <form id="wishlist-form">
                         <input type="number" name="id" value="{{ product.id }}" hidden="true">
                         <button type="submit" id="add-to-wishlist" data-id="{{ product.id }}">
-                            <span class="fa fa-heart"></span>
+                            <i class="fa fa-heart"></i>
                             <span class="text">Add to Wishlist</span>
                         </button>
                     </form>
