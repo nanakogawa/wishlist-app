@@ -59,6 +59,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-# Ignore minified files
-public/css/min
