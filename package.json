@@ -4,7 +4,7 @@
   "description": "Take home project for Wild Attire Inc.",
   "main": "app.js",
   "scripts": {
-    "start": "npm-run-all --parallel watch:*",
+    "start": "gulp serve",
     "watch:server": "gulp serve",
     "watch:sync": "browser-sync start -c ./sync.js",
     "watch": "npm-run-all --parallel watch:*"
