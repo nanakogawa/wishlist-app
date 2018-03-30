@@ -3,15 +3,27 @@
 #page-product {
   padding: 0;
 
+  .container {
+    padding: 0;
+
+    media($min-lg) {
+      padding:  0 4%;
+    }
+  }
+
   .breadcrumb {
     color: #b9b9b9;
-    display: block;
+    display: none;
     font-size: 10px;
     letter-spacing: 1px;
     margin: 20px auto 0;
     max-width: 1200px;
     padding: 0 7%;
     text-transform: uppercase;
+
+    @media($min-md) {
+      display: block;
+    }
   }
 
   .add-to-wishlist-message {
@@ -20,11 +32,15 @@
     display: none;
     font-size: 15px;
     line-height: 1.5;
-    margin: 10px 0 20px;
+    margin: 0 0 20px;
     padding: 20px 4% 25px;
     position: relative;
     text-align: center;
     width: 100%;
+
+    @media($min-md) {
+      margin: 10px 0 20px;
+    }
 
     .message {
       color: $label-dark-grey;
@@ -46,14 +62,17 @@
         color: #fff;
         display: block;
         letter-spacing: 1px;
-        max-width: 290px;
         padding: 14px 0;
         text-decoration: none;
-        width: 49%;
+        width: 49.25%;
 
         &.browse {
-          display: block;
+          display: none;
           float: left;
+
+          @media($min-md) {
+            display: block;
+          }
 
           i {
             margin-right: 8px;
@@ -62,7 +81,13 @@
 
         &.wishlist {
           display: block;
-          float: right;
+          float: none;
+          width: 100%;
+
+          @media($min-md) {
+            float: right;
+            width: 49.25%;
+          }
 
           i {
             margin-left: 8px;
@@ -75,14 +100,29 @@
   .single-product {
     display: flex;
     flex-direction: row;
-    margin: 20px auto 40px;
+    margin: 25px auto 40px;
     max-width: 1200px;
-    padding: 0 7%;
+    padding: 0 4%;
+
+    @media($min-md) {
+      margin: 20px auto 40px;
+      padding: 0 7%;
+    }
+
+    @media(min-width: 1200px) {
+      margin: 20px auto 40px;
+      padding: 0 80px;
+    }
 
     .product-image {
+      display: none;
       text-align: center;
       padding: 0 5% 0 0;
       width: 50%;
+
+      @media($min-md) {
+        display: block;
+      }
 
       img {
         max-width: 468px;
@@ -90,16 +130,39 @@
       }
     }
 
+    .mobile-product-image {
+      display: block;
+      margin: 15px auto 30px;
+      max-width: 500px;
+
+      @media($min-md) {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
     .product-info {
       text-align: center;
-      padding: 0 0 0 5%;
-      width: 50%;
+      padding: 0;
+      width: 100%;
+
+      @media($min-md) {
+        padding: 0 0 0 5%;
+        width: 50%;
+      }
 
       h1.title {
         font-family: nexa-slab-bold, serif;
-        font-size: 28px;
+        font-size: 23px;
         font-weight: normal;
         margin: 0;
+
+        @media ($min-md) {
+          font-size: 23px;
+        }
 
       }
 
@@ -138,19 +201,21 @@
           letter-spacing: 1px;
           margin: 15px 0 0;
           padding: 15px 0;
+          width: 100%;
+
+          transition: background 0.1s ease-in-out;
           -webkit-font-smoothing: antialiased;
           -webkit-transition: background 0.1s ease-in-out;
           -moz-transition: background 0.1s ease-in-out;
-          transition: background 0.1s ease-in-out;
-          width: 100%;
 
           &:hover {
             background: $hover-blue;
             cursor: pointer;
             outline: none;
+
+            transition: background 0.1s ease-in-out;
             -webkit-transition: background 0.1s ease-in-out;
             -moz-transition: background 0.1s ease-in-out;
-            transition: background 0.1s ease-in-out;
           }
         }
 
@@ -162,12 +227,21 @@
           font-family: nexa-regular, serif;
           font-size: 13px;
           margin: 25px 0 0;
+
+          transition: background 0.1s ease-in-out;
+          -webkit-transition: background 0.1s ease-in-out;
+          -moz-transition: background 0.1s ease-in-out;
           -moz-box-shadow: none;
           -webkit-box-shadow: none;
 
           &:hover {
+            color: $red;
             cursor: pointer;
             outline: none;
+
+            transition: background 0.1s ease-in-out;
+            -webkit-transition: background 0.1s ease-in-out;
+            -moz-transition: background 0.1s ease-in-out;
           }
         }
       }

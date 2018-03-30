@@ -5,17 +5,17 @@ $blue:            #00b6cf;
 $btn-grey:        #ededed;
 $dark-grey:       #212121;
 $font-grey:       #b9b9b9;
-$hover-blue:      #00bfd9;
 $grey-border:     #d4d4d4;
+$hover-blue:      #00bfd9;
 $icon-grey:       #666666;
 $label-dark-grey: #303030;
+$navy:            #2d333c;
 $panel-grey:      #f5f5f5;
+$red:             #d61d33;
 
 // Other
 $inner-box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.3),
                    inset 0 -7px 9px -7px rgba(0,0,0,0.3);
-$radius-lg: 6px;
-$radius-md: 5px;
 
 // Fonts
 @font-face {
@@ -34,3 +34,7 @@ $radius-md: 5px;
 }
 
 // Media Queries
+$min-xl: 'min-width: 1440px';
+$min-lg: 'min-width: 1000px';
+$min-md: 'min-width: 769px';
+$min-sm: 'min-width: 500px';

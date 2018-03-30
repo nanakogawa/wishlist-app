@@ -1,9 +1,12 @@
 {{> head}}
 
 <div id="page-wishlist" class="page-wrap">
+    <div class="wishlist-banner">
+        Your Wishlist
+    </div>
     <div class="container">
         <div class="no-wishlist">
-            no wishlist
+            No Products in Your Wishlist
         </div>
         <div class="product-list">
             {{# wishlist}}
@@ -16,14 +19,13 @@
                         </div>
                     </a>
                     <a href="#" class="remove-wishlist" data-id="{{ id }}">
-                        <span class="text">Remove</span>
+                        <i class="fa fa-trash-o"></i>
                     </a>
                     <a href="#" class="move-to-cart" data-id="{{ id }}">
                         <span class="text">Move to Cart</span>
                     </a>
                 </div>
             {{/ wishlist}}
-
         </div>
     </div>
 </div>

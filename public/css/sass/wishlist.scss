@@ -2,6 +2,37 @@
 @import "partials/products";
 
 #page-wishlist {
+  padding: 0 0 4% 0;
+
+  .wishlist-banner {
+    background: $navy;
+    color: #fff;
+    text-align: center;
+    font-family: nexa-slab-bold, sans-serif;
+    font-size: 28px;
+    font-weight: normal;
+    padding: 34px 10px;
+    -webkit-font-smoothing: antialiased;
+
+    @media($min-sm) {
+      font-size: 38px;
+      padding: 45px 10px;
+    }
+
+    @media($min-md) {
+      font-size: 43px;
+      padding: 55px 10px;
+    }
+  }
+
+  .container {
+    padding-top: 6%;
+
+    @media($min-sm) {
+      padding-top: 4%;
+    }
+  }
+
   .no-wishlist {
     display: none;
   }
@@ -13,15 +44,23 @@
 
     .text {
       font-family: nexa-slab-bold, sans-serif;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: normal;
       -webkit-font-smoothing: antialiased;
+
+      @media($min-md) {
+        font-size: 17px;
+      }
     }
 
     img {
       display: block;
       margin: 13px auto 15px;
-      width: 33px;
+      width: 28px;
+
+      @media($min-md) {
+        font-size: 33px;
+      }
     }
 
     a {
@@ -30,6 +69,18 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  .product-info {
+    min-height: 0;
+
+    @media($min-sm) {
+      min-height: 66px;
+    }
+
+    @media($min-md) {
+      min-height: 0;
     }
   }
 }

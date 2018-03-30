@@ -14,15 +14,24 @@
   }
 
   .large {
+    font-size: 12px;
     font-family: nexa-slab-bold, serif;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
+
+    @media($min-sm) {
+      font-size: 14px;
+    }
   }
 
   .small {
-    font-size: 11px;
+    font-size: 9px;
     letter-spacing: 1px;
     padding-top: 5px;
+
+    @media($min-sm) {
+      font-size: 11px;
+    }
 
     .learn-more {
       color: #fff;

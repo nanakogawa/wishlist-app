@@ -29,5 +29,9 @@ button {
 }
 
 .page-wrap {
-  padding: 4% 0;
+  padding: 6% 0;
+
+  @media($min-sm) {
+    padding: 4% 0;
+  }
 }

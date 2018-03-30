@@ -1,11 +1,29 @@
 .product-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   height: 100%;
 
   .product {
     padding: 0 9px 40px;
-    width: 16.666%;
+    position: relative;
+    width: 50%;
+
+    @media($min-sm) {
+      width: 33.333%;
+    }
+
+    @media($min-md) {
+      width: 25%;
+    }
+
+    @media($min-lg) {
+      width: 20%;
+    }
+
+    @media($min-xl) {
+      width: 16.666%;
+    }
 
     a {
       color: $dark-grey;
@@ -19,6 +37,63 @@
         min-height: 80px;
         padding: 15px 0 0;
         text-align: center;
+      }
+
+      &.remove-wishlist {
+        background: #fff;
+        border: 1px solid $grey-border;
+        border-radius: 50%;
+        color: $font-grey;
+        display: block;
+        font-family: nexa-slab-bold, serif;
+        font-size: 21px;
+        font-weight: normal;
+        height: 44px;
+        line-height: 48px;
+        padding: 0;
+        position: absolute;
+        right: 25px;
+        text-align: center;
+        top: 15px;
+        width: 45px;
+
+        transition: background 0.1s ease-in-out;
+        -webkit-transition: background 0.1s ease-in-out;
+        -moz-transition: background 0.1s ease-in-out;
+
+        &:hover {
+          background: #f9f9f9;
+          transition: background 0.1s ease-in-out;
+          -webkit-transition: background 0.1s ease-in-out;
+          -moz-transition: background 0.1s ease-in-out;
+        }
+      }
+
+      &.move-to-cart {
+        background: $font-grey;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        display: block;
+        font-family: nexa-slab-bold, serif;
+        font-size: 15px;
+        font-weight: normal;
+        margin: 15px 0 0;
+        padding: 15px 0;
+        text-align: center;
+        width: 100%;
+        -webkit-font-smoothing: antialiased;
+
+        transition: background 0.1s ease-in-out;
+        -webkit-transition: background 0.1s ease-in-out;
+        -moz-transition: background 0.1s ease-in-out;
+
+        &:hover {
+          background-color: #c0c0c0;
+          transition: background 0.1s ease-in-out;
+          -webkit-transition: background 0.1s ease-in-out;
+          -moz-transition: background 0.1s ease-in-out;
+        }
       }
     }
   }

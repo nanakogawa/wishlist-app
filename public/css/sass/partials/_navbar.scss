@@ -1,13 +1,31 @@
 .navbar {
   .nav-container {
-    padding: 10px 4% 15px;
+    border-bottom: solid $grey-border 1px;
+    padding: 10px 0 0;
+
+    @media($min-lg) {
+      border-bottom: none;
+      padding: 10px 4% 15px;
+    }
 
     .nav-top {
       width: 100%;
 
       .nav-top-right {
-        display: inline-block;
-        float: right;
+        border-bottom: solid #d4d4d4 1px;
+        display: block;
+        float: none;
+        padding-bottom: 10px;
+        text-align: center;
+        width: auto;
+
+        @media($min-lg) {
+          border-bottom: none;
+          display: inline-block;
+          float: right;
+          padding-bottom: 10px;
+          text-align: right;
+        }
 
         a {
           color: $dark-grey;
@@ -29,19 +47,28 @@
     .nav-logo {
       display: block;
       margin: auto;
-      max-width: 200px;
+      max-width: 165px;
       padding-top: 5px;
+
+      @media($min-lg) {
+        max-width: 200px;
+      }
 
       img {
         height: auto;
-        max-width: 200px;
+        max-width: 100%;
       }
     }
   }
 
   .navbar-links {
-    height: 35px;
-    border-top: solid $grey-border 1px;
-    border-bottom: solid $grey-border 1px;
+    display: none;
+
+    @media($min-lg) {
+      display: block;
+      height: 35px;
+      border-top: solid $grey-border 1px;
+      border-bottom: solid $grey-border 1px;
+    }
   }
 }
