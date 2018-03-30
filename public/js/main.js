@@ -19,7 +19,7 @@ $(document).ready(function() {
 			getWishlistWisget();
 		}
 	});
-
+ 
 	$('#page-product').ready(function() {
 		var id = wishlistBtn.attr('data-id');
 		initialCheckDuplicate(id);
