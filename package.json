@@ -34,6 +34,7 @@
     "gulp-sass": "^3.1.0",
     "hogan-express": "^0.5.2",
     "jquery": "^3.3.1",
+    "mustache": "^2.3.0",
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",
     "path": "^0.12.7"

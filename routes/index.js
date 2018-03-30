@@ -7,26 +7,6 @@ var fs = require('fs'),
 	products = JSON.parse(rawdata);
 
 // Middleware
-
-var getAll = function(callback) {
-	if(!products) {
-	  return callback(new Error('Error'));
-	}
-	return callback(null, products);
-};
-
-var getAllMiddleware = function(req, res, next) {
-	getAll(function(error, products) {
-		if(error) {
-			res.statusCode = 500;
-			return next(error);
-		}
-		res.statusCode = 200;
-		res.body = products;
-		return next();
-	})
-};
-
 var findProduct = function(param, callback) {
 	var key = Object.keys(param)[0];
 	var product;
@@ -55,19 +35,39 @@ var findProductMiddleware = function(req, res, next) {
 	}
 };
 
-// APIs
-router.get('/product/getAll', getAllMiddleware, function(req, res) {
-	res.status(200).send(res.body);
-});
+var findProductsById = function(param, callback) {
+	var id = param.replace('id=', '');
+	var cookies = id.split(',');
+	var wishlist = [];
+	for(var i = 0; i < cookies.length; i++) {
+		products.filter(function( obj ) {
+			if(obj.id === cookies[i]) {
+				wishlist.push(obj);
+			}
+		});
+	}
+	return callback(null, wishlist);
+};
 
-router.get('/product/single/:id', findProductMiddleware, function(req, res) {
-	res.status(200).send(res.body);
-});
+var findProductsByIdMiddleware = function(req, res, next) {
+	if(req.params) {
+		findProductsById(req.params.id, function(error, wishlist) {
+			if(error) {
+				res.statusCode = 200;
+				return next();
+			}
+			res.statusCode = 200;
+			res.body = wishlist;
+			return next();
+		})
+	} else {
+		return next();
+	}
+};
 
-router.post('/add-to-wishlist', function(req, res) {
+router.get('/add-to-wishlist', function(req, res) {
 	// Got cookie! "req.body"
 	// Do something with cookie
-	console.log(req.body);
 	res.status(200).send('Success!');
 });
 
@@ -81,7 +81,7 @@ router.get('/', function(req, res) {
 	})
 });
 
-router.get('/product/:urlParam',findProductMiddleware, function(req, res) {
+router.get('/product/:urlParam', findProductMiddleware, function(req, res) {
 	res.render('product', {
 		style: 'product.min.css',
 		metaTitle: 'Product | Ties.com - Wishlist App',
@@ -90,11 +90,12 @@ router.get('/product/:urlParam',findProductMiddleware, function(req, res) {
 	});
 });
 
-router.get('/wishlist', function(req, res) {
+router.get('/wishlist/:id',findProductsByIdMiddleware, function(req, res) {
 	res.render('wishlist', {
 		style: 'wishlist.min.css',
 		metaTitle: 'Wishlist | Ties.com - Wishlist App',
-		metaDescription: 'This is the Wishlist page'
+		metaDescription: 'This is the Wishlist page',
+		wishlist: res.body
 	});
 });
 

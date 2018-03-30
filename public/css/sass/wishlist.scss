@@ -1,5 +1,35 @@
 @import "partials/base";
+@import "partials/products";
 
 #page-wishlist {
+  .no-wishlist {
+    display: none;
+  }
 
+  .move-to-cart-placeholder {
+    height: 100%;
+    padding: 50% 0;
+    text-align: center;
+
+    .text {
+      font-family: nexa-slab-bold, sans-serif;
+      font-size: 17px;
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      margin: 13px auto 15px;
+      width: 33px;
+    }
+
+    a {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
 }

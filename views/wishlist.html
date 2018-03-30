@@ -2,9 +2,12 @@
 
 <div id="page-wishlist" class="page-wrap">
     <div class="container">
-       <div class="product-list">
+        <div class="no-wishlist">
+            no wishlist
+        </div>
+        <div class="product-list">
             {{# wishlist}}
-                <div class="product">
+                <div class="product" data-id="{{ id }}">
                     <a href="{{ url }}">
                         <img class="product-img" src="/images/products/{{ image }}" alt="{{ name }}" title="{{ name }}">
                         <div class="product-info">
@@ -12,8 +15,15 @@
                             <div>${{ price }}</div>
                         </div>
                     </a>
+                    <a href="#" class="remove-wishlist" data-id="{{ id }}">
+                        <span class="text">Remove</span>
+                    </a>
+                    <a href="#" class="move-to-cart" data-id="{{ id }}">
+                        <span class="text">Move to Cart</span>
+                    </a>
                 </div>
-           {{/ wishlist}}
+            {{/ wishlist}}
+
         </div>
     </div>
 </div>
