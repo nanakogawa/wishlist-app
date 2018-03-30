@@ -53,7 +53,7 @@ var findProductsByIdMiddleware = function(req, res, next) {
 	if(req.params) {
 		findProductsById(req.params.id, function(error, wishlist) {
 			if(error) {
-				res.statusCode = 200;
+				res.statusCode = 400;
 				return next();
 			}
 			res.statusCode = 200;
@@ -107,8 +107,11 @@ router.get('/shopping-cart', function(req, res) {
 	res.render('shopping-cart', {
 		style: 'shopping-cart.min.css',
 		metaTitle: 'Shopping Cart | Ties.com - Wishlist App',
-		metaDescription: 'This is the Shopping Cart page'
+		metaDescription: 'This is the Shopping Cart page',
+		partials: {}
 	});
 });
+
+
 
 module.exports= router;

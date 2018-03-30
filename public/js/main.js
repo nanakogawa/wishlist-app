@@ -14,9 +14,10 @@ $(document).ready(function() {
 
 	$('#page-cart').ready(function() {
 		if(!document.cookie || storedCookies.length === 0) {
-			$('#page-cart .wishlist-widget').css('display', 'none');
+			$('#page-cart .wishlist-widget .product').css('display', 'none');
+			$('#page-cart .wishlist-widget .error-message').css('display', 'block');
 		} else {
-			getWishlistWisget();
+			getWishlistWidgetData();
 		}
 	});
 
@@ -44,14 +45,14 @@ $(document).ready(function() {
 				setCookie(id);
 			},
 			error: function (error) {
-				console.log(error);
+				// Error handling
 			}
 		});
 	});
 
 	$('.view-wishlist').click(function() {
 		if(!document.cookie || storedCookies.length === 0) {
-			console.log('no cookie');
+			// Error handling
 		} else {
 			getWishlist();
 		}
@@ -108,16 +109,51 @@ $(document).ready(function() {
 		});
 	}
 
-	function getWishlistWisget() {
-	  var ids = getIdArray();
-		var url = '/api//wishlist/id=' + ids;
+	function getWishlistWidgetData() {
+		var ids = getIdArray();
+		var url = '/api/wishlist/id=' + ids;
 		$.get({
 			url: url,
 			success: function(res) {
-				console.log(res);
+				var container = $('.wishlist-widget .widget-products .product-list');
+				for(var i = 0; i < res.length; i++) {
+					container.append(
+						'<div class="product">' +
+						  '<div class="product-image-container">' +
+						    '<a href="' + res[i].url + '">' +
+								'<img class="product-img" ' +
+											'src="/images/products/' + res[i].image + '" ' +
+						          'alt="' + res[i].name + '" ' +
+						          'title="' + res[i].name +
+						    '">' +
+						    '</a>' +
+						    '<a href="#" ' +
+						        'class="move-to-cart-overlap" ' +
+										'data-id="' + res[i].id +'">' +
+									'Move to Cart' +
+					      '</a>' +
+					    '</div>' +
+					    '<a href="' + res[i].url + '">' +
+								'<div class="product-info">' +
+									'<div>' + res[i].name + '</div>' +
+									'<div>' + res[i].price + '</div>' +
+								'</div>' +
+							'</a>' +
+						'</div>'
+					)
+				}
+				$('.wishlist-widget .widget-products').html(container);
 			}
 		});
 	}
+
+	$('#page-cart').on('click', 'a.move-to-cart-overlap', function(event) {
+		var id = event.currentTarget.dataset.id;
+		removeCookie(id);
+		var removedCookie = JSON.stringify(storedCookies);
+		setDocCookie(removedCookie);
+		location.reload();
+	});
 
 	function assignObject(target) {
 		for (var i = 1; i < arguments.length; i++) {
@@ -133,6 +169,7 @@ $(document).ready(function() {
 
 	function initialCheckDuplicate(id) {
 		if(checkDuplicate(id)) {
+			wishlistBtn.css('color', '#d61d33');
 			wishlistBtnText.text('Added to Wishlist');
 		}
 	}
@@ -155,7 +192,7 @@ $(document).ready(function() {
 				var split = string.split('=');
 				return assignObject({[split[0]]: [split[1]]})
 			}, {});
-			return storedCookies = JSON.parse(idCookies['id']);
+			return storedCookies = JSON.parse(idCookies['wishlist']);
 		} else if(id) {
 			return assignObject([{id: id}]);
 		}
@@ -175,6 +212,7 @@ $(document).ready(function() {
 	}
 
 	function removeCookieUpdate(id) {
+		wishlistBtn.css('color', '#212121');
 		wishlistBtnText.text('Add to Wishlist');
 		updateWishlistCount(id);
 		if(storedCookies.length === 0) {
@@ -183,6 +221,7 @@ $(document).ready(function() {
 	}
 
 	function addCookieUpdate(id) {
+		wishlistBtn.css('color', '#d61d33');
 		wishlistBtnText.text('Added to Wishlist');
 		updateWishlistCount(id);
 		if(storedCookies.length !== 0) {
@@ -200,7 +239,7 @@ $(document).ready(function() {
 	}
 
 	function setDocCookie(cookie) {
-		document.cookie = "id=" + cookie + "; path=/";
+		document.cookie = "wishlist=" + cookie + "; path=/";
 	}
 
 	function setCookie(id) {
@@ -237,6 +276,7 @@ $(document).ready(function() {
 			var newCookie = [];
 			newCookie.push({id: id});
 			var firstCookie = JSON.stringify(newCookie);
+			wishlistBtn.css('color', '#d61d33');
 			wishlistBtnText.text('Added to Wishlist');
 			wishlistCount.text('1');
 			wishlistNav.css('display', 'inline');
