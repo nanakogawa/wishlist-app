@@ -12,6 +12,14 @@ $(document).ready(function() {
 		updateWishlistCount();
 	})();
 
+	$('#page-cart').ready(function() {
+		if(!document.cookie || storedCookies.length === 0) {
+			$('#page-cart .wishlist-widget').css('display', 'none');
+		} else {
+			getWishlistWisget();
+		}
+	});
+
 	$('#page-product').ready(function() {
 		var id = wishlistBtn.attr('data-id');
 		initialCheckDuplicate(id);
@@ -79,20 +87,34 @@ $(document).ready(function() {
 		$('.product[data-id=' + id+ ']').html(placeholder);
 	}
 
-	function getWishlist() {
+	function getIdArray() {
 	  var cookie = getCookie();
 		var productIds = [];
 		for(var i = 0; i < cookie.length; i++) {
 			productIds.push(cookie[i].id);
 		}
 		var idArray = productIds.join(',');
+		return idArray;
+	}
 
-		console.log(idArray);
-		var url = '/wishlist/id=' + idArray;
+	function getWishlist() {
+	  var ids = getIdArray();
+		var url = '/wishlist/id=' + ids;
 		$.get({
 			url: url,
 			success: function() {
 				window.location.href = url;
+			}
+		});
+	}
+
+	function getWishlistWisget() {
+	  var ids = getIdArray();
+		var url = '/api//wishlist/id=' + ids;
+		$.get({
+			url: url,
+			success: function(res) {
+				console.log(res);
 			}
 		});
 	}

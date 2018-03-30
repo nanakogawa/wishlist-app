@@ -90,6 +90,10 @@ router.get('/product/:urlParam', findProductMiddleware, function(req, res) {
 	});
 });
 
+router.get('/api/wishlist/:id',findProductsByIdMiddleware, function(req, res) {
+	res.send(res.body);
+});
+
 router.get('/wishlist/:id',findProductsByIdMiddleware, function(req, res) {
 	res.render('wishlist', {
 		style: 'wishlist.min.css',
