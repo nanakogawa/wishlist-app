@@ -6,4 +6,4 @@ https://wishlist-app-live.herokuapp.com/
 
 
 Mockups:
-https://github.com/nanakogawa/wishlist-app/blob/master/README.md
+https://github.com/nanakogawa/wishlist-app/tree/master/public/images/mockups
