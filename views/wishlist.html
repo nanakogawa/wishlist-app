@@ -2,7 +2,19 @@
 
 <div id="page-wishlist" class="page-wrap">
     <div class="container">
-       Wishlist
+       <div class="product-list">
+            {{# wishlist}}
+                <div class="product">
+                    <a href="{{ url }}">
+                        <img class="product-img" src="/images/products/{{ image }}" alt="{{ name }}" title="{{ name }}">
+                        <div class="product-info">
+                            <div>{{ name }}</div>
+                            <div>${{ price }}</div>
+                        </div>
+                    </a>
+                </div>
+           {{/ wishlist}}
+        </div>
     </div>
 </div>
 
