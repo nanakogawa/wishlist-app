@@ -1,5 +1,6 @@
 [
   {
+    "category": "Neckties",
     "color": "Zinfandel",
     "id": "1",
     "image": "zinfandel-skinny-tie.jpg",
@@ -11,6 +12,7 @@
 
   },
   {
+    "category": "Bow Ties",
     "color": "Purple",
     "id": "2",
     "image": "purple-robe-butterfly-bow-tie.jpg",
@@ -20,6 +22,7 @@
     "urlParam": "purple-robe-butterfly-bow-tie"
   },
   {
+    "category": "Neckties",
     "color": "Light Blue",
     "id": "3",
     "image": "light-blue-ben-tie.jpg",
@@ -29,6 +32,7 @@
     "urlParam": "light-blue-ben-tie"
   },
   {
+    "category": "Pocket Square",
     "color": "Coral",
     "id": "4",
     "image": "coral-tioga-pocket-square.jpg",
