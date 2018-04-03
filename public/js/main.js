@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	'use strict';
 
-	var storedCookies = getCookie();
+	var storedCookies = getCookie() ? getCookie() : [];
 	var wishlistBtn = $('#add-to-wishlist');
 	var wishlistBtnText = $('#add-to-wishlist .text');
 	var wishlistNav = $('.nav-wishlist');
@@ -162,7 +162,7 @@ $(document).ready(function() {
 	}
 
 	function updateWishlistCount(id) {
-		if(storedCookies.length !== 0) {
+		if(getCookie()) {
 			wishlistCount.text(storedCookies.length);
 		} else {
 			wishlistNav.css('display', 'none')
@@ -183,6 +183,8 @@ $(document).ready(function() {
 
 	function checkDuplicate(id) {
 		if(getCookie()) {
+
+			console.log(getCookie());
 			for(var i = 0; i < storedCookies.length; i++) {
 				if(storedCookies[i].id === id) {
 					return true;
@@ -240,16 +242,24 @@ $(document).ready(function() {
 	}
 
 	function getUpdatedCookie(id) {
-		if(checkDuplicate(id)) {
-			removeCookie(id);
-			var removedCookie = JSON.stringify(storedCookies);
-			removeCookieUpdate(id);
-			return removedCookie;
-		} else {
-			storedCookies.push({id: id});
-			var addCookie = JSON.stringify(storedCookies);
+		if(!document.cookie) {
+			var newCookie = [];
+			newCookie.push({id: id});
+			var firstCookie = JSON.stringify(newCookie);
 			addCookieUpdate(id);
-			return addCookie;
+			return firstCookie;
+		} else {
+			if(checkDuplicate(id)) {
+				removeCookie(id);
+				var removedCookie = JSON.stringify(storedCookies);
+				removeCookieUpdate(id);
+				return removedCookie;
+			} else {
+				storedCookies.push({id: id});
+				var addCookie = JSON.stringify(storedCookies);
+				addCookieUpdate(id);
+				return addCookie;
+			}
 		}
 	}
 });
