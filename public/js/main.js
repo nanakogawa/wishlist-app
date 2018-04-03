@@ -183,8 +183,6 @@ $(document).ready(function() {
 
 	function checkDuplicate(id) {
 		if(getCookie()) {
-
-			console.log(getCookie());
 			for(var i = 0; i < storedCookies.length; i++) {
 				if(storedCookies[i].id === id) {
 					return true;
